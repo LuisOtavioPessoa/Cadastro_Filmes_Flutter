@@ -46,12 +46,11 @@ class _ListaFilmesState extends State<ListaFilmes> {
                   title: Text('Equipe:'),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start, 
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Ruã Fernandes Araújo'),
-                      Text('Ótávio'),
-                      Text('Fred'),
+                      Text('Luís Ótávio Pessôa da Silva'),
+                      Text('Fred Williams Silva Barbosa'),
                     ],
                   ),
                   actions: [
@@ -92,7 +91,7 @@ class _ListaFilmesState extends State<ListaFilmes> {
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(
-                    vertical: 8, horizontal: 16), // Margem
+                        vertical: 8, horizontal: 16), // Margem
                     decoration: BoxDecoration(
                       color: Colors.white, // Cor de fundo
                       borderRadius:

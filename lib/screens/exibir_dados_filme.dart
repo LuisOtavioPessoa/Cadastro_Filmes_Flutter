@@ -13,7 +13,7 @@ class ExibirDadosFilme extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 133, 235),
         title: Text('Detalhes', style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white), 
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -45,7 +45,8 @@ class ExibirDadosFilme extends StatelessWidget {
                     style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                   ),
                   Text(
-                    '14 anos', // Substitua por classificação etária, se disponível
+                    filme
+                        .faixaEtaria, // Substitua por classificação etária, se disponível
                     style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                   ),
                 ],
