@@ -13,4 +13,20 @@ class FilmeDao {
       return null;
     }
   }
+
+  static Future<List<Filme>> buscarTodos() async {
+    try {
+      Database db = await FilmeConnection.getConnection();
+      //SELECT * FROM filmes
+      List<Map<String, Object?>> ListMap = await db.query('filmes');
+      List<Filme> filmes = [];
+      for (Map<String, Object?> map in ListMap) {
+        filmes.add(Filme.fromMap(map));
+      }
+      return filmes;
+    } catch (ex) {
+      print(ex);
+      return [];
+    }
+  }
 }
