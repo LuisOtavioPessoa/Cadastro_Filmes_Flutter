@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:myapp/database/filme_dao.dart';
 import 'package:myapp/model/filme.dart';
 
+import 'adicionar_filme.dart';
 import 'exibir_dados_filme.dart';
 
 class ListaFilmes extends StatefulWidget {
@@ -46,11 +47,11 @@ class _ListaFilmesState extends State<ListaFilmes> {
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment:
-                        CrossAxisAlignment.start, // Alinha os textos à esquerda
+                        CrossAxisAlignment.start, 
                     children: [
                       Text('Ruã Fernandes Araújo'),
-                      Text('Luís Ótávio Pessôa da Silva'),
-                      Text('Fred Williams Silva Barbosa '),
+                      Text('Ótávio'),
+                      Text('Fred'),
                     ],
                   ),
                   actions: [
@@ -91,11 +92,11 @@ class _ListaFilmesState extends State<ListaFilmes> {
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(
-                        vertical: 8, horizontal: 16), // Margem
+                    vertical: 8, horizontal: 16), // Margem
                     decoration: BoxDecoration(
                       color: Colors.white, // Cor de fundo
                       borderRadius:
-                          BorderRadius.circular(6), // Borda arredondada
+                          BorderRadius.circular(12), // Borda arredondada
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26, // Sombra leve
@@ -112,7 +113,6 @@ class _ListaFilmesState extends State<ListaFilmes> {
                           filme.urlImagem,
                           width: 50,
                           height: 50,
-                          fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
                               Icon(Icons.broken_image),
                         ),
@@ -176,6 +176,20 @@ class _ListaFilmesState extends State<ListaFilmes> {
                 );
               },
             ),
+      // Botão para ir para tela de adicionar um novo filme
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AdicionarFilme(), // Nova tela
+            ),
+          );
+        },
+        backgroundColor: const Color.fromARGB(255, 0, 133, 235),
+        child: Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 }
