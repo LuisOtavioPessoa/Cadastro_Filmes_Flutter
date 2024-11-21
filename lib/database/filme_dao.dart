@@ -29,4 +29,27 @@ class FilmeDao {
       return [];
     }
   }
+
+  static Future<int?> atualizar(int id, Filme filme) async {
+    try {
+      Database db = await FilmeConnection.getConnection();
+      //UPDATE filmes SET urlImagem = ?, titulo = ?, genero = ?,
+      return await db
+          .update('filmes', filme.toMap(), where: "id=?", whereArgs: [id]);
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+  }
+
+  static Future<int?> deletar(int id) async {
+    try {
+      Database db = await FilmeConnection.getConnection();
+      //DELETE FROM filmes WHERE id = ?
+      return await db.delete('filmes', where: "id=?", whereArgs: [id]);
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+  }
 }
