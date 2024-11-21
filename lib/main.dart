@@ -1,28 +1,23 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:myapp/database/filme_dao.dart';
+import 'package:myapp/model/filme.dart';
+import 'screens/lista_filmes.dart';
 
-main() {
+void main() async {
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Garante que o binding está configurado
   runApp(MainApp());
-
-  //FilmeDao.inserir(Filme(Informações de um filme))
-  //  .then((value){
-  // print(value);
-  // });
-
-  //FilmeDao.buscarTodos().then((value){
-  //print(value);
-  //});
-}
-
-Future<dynamic> teste() async {
-  await Future.delayed(Duration(seconds: 5));
-  print("Fim do delayed");
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      title: 'Gerenciador de Filmes',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ListaFilmes(), // Define a tela de listagem como inicial
+    );
   }
 }
