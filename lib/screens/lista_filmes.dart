@@ -175,20 +175,26 @@ class _ListaFilmesState extends State<ListaFilmes> {
                 );
               },
             ),
-      // Botão para ir para tela de adicionar um novo filme
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AdicionarFilme(), // Nova tela
-            ),
-          );
-        },
-        backgroundColor: const Color.fromARGB(255, 0, 133, 235),
-        child: Icon(Icons.add, color: Colors.white),
-      ),
+
+        // Botão para ir para tela de adicionar um novo filme
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final filmeAdicionado = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CadastrarFilme(), // Chama a tela de cadastro
+              ),
+            );
+
+            if (filmeAdicionado != null) {
+              // Caso a tela de cadastro retorne um filme, recarregue a lista
+              carregarFilmes(); // Recarrega a lista após adicionar
+            }
+          },
+          backgroundColor: const Color.fromARGB(255, 0, 133, 235),
+          child: Icon(Icons.add, color: Colors.white),
+        ),
+
     );
   }
 }
