@@ -46,12 +46,11 @@ class _ListaFilmesState extends State<ListaFilmes> {
                   title: Text('Equipe:'),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start, 
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Ruã Fernandes Araújo'),
-                      Text('Ótávio'),
-                      Text('Fred'),
+                      Text('Luís Ótávio Pessôa da Silva'),
+                      Text('Fred Williams Silva Barbosa'),
                     ],
                   ),
                   actions: [
@@ -92,7 +91,7 @@ class _ListaFilmesState extends State<ListaFilmes> {
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(
-                    vertical: 8, horizontal: 16), // Margem
+                        vertical: 8, horizontal: 16), // Margem
                     decoration: BoxDecoration(
                       color: Colors.white, // Cor de fundo
                       borderRadius:
@@ -176,20 +175,26 @@ class _ListaFilmesState extends State<ListaFilmes> {
                 );
               },
             ),
-      // Botão para ir para tela de adicionar um novo filme
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AdicionarFilme(), // Nova tela
-            ),
-          );
-        },
-        backgroundColor: const Color.fromARGB(255, 0, 133, 235),
-        child: Icon(Icons.add, color: Colors.white),
-      ),
+
+        // Botão para ir para tela de adicionar um novo filme
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final filmeAdicionado = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CadastrarFilme(), // Chama a tela de cadastro
+              ),
+            );
+
+            if (filmeAdicionado != null) {
+              // Caso a tela de cadastro retorne um filme, recarregue a lista
+              carregarFilmes(); // Recarrega a lista após adicionar
+            }
+          },
+          backgroundColor: const Color.fromARGB(255, 0, 133, 235),
+          child: Icon(Icons.add, color: Colors.white),
+        ),
+
     );
   }
 }
