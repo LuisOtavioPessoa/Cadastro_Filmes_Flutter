@@ -49,7 +49,7 @@ class _ListaFilmesState extends State<ListaFilmes> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Ruã Fernandes Araújo'),
-                      Text('Luís Ótávio Pessôa da Silva'),
+                      Text('Luís Otávio Pessôa da Silva'),
                       Text('Fred Williams Silva Barbosa'),
                     ],
                   ),

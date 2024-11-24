@@ -113,6 +113,7 @@ class _CadastrarFilmeState extends State<CadastrarFilme> {
                 decoration: const InputDecoration(
                   labelText: 'Descrição',
                 ),
+                minLines: 1,
                 maxLines: 5,
               ),
             ],
