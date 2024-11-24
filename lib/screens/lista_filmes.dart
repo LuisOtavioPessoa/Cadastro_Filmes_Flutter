@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:myapp/database/filme_dao.dart';
 import 'package:myapp/model/filme.dart';
+import 'package:myapp/screens/editar_filme.dart';
 
 import 'adicionar_filme.dart';
 import 'exibir_dados_filme.dart';
@@ -140,36 +141,42 @@ class _ListaFilmesState extends State<ListaFilmes> {
                         ],
                       ),
                       onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => Wrap(
-                            children: [
-                              ListTile(
-                                leading: Icon(Icons.info),
-                                title: Text('Exibir Dados'),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ExibirDadosFilme(
-                                          filme:
-                                              filme), // Passa o filme selecionado
-                                    ),
-                                  );
-                                },
-                              ),
-                              ListTile(
-                                leading: Icon(Icons.edit),
-                                title: Text('Alterar'),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  // Navegar para a tela de edição do filme
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+  showModalBottomSheet(
+    context: context,
+    builder: (context) => Wrap(
+      children: [
+        ListTile(
+          leading: Icon(Icons.info),
+          title: Text('Exibir Dados'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ExibirDadosFilme(
+                  filme: filme, // Passa o filme selecionado
+                ),
+              ),
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.edit),
+          title: Text('Alterar'),
+          onTap: () {
+            // Navegar para a tela de edição do filme, passando o objeto 'filme'
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditarFilme(filme: filme),
+              ),
+            );
+          },
+        ),
+      ],
+    ),
+  );
+},
+
                     ),
                   ),
                 );

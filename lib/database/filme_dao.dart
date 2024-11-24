@@ -37,18 +37,24 @@ static Future<List<Filme>> buscarTodos() async {
   }
 }
 
+static Future<int?> atualizar(int id, Filme filme) async {
+  try {
+    // Obter a conexão com o banco de dados
+    Database db = await FilmeConnection.getConnection();
 
-  static Future<int?> atualizar(int id, Filme filme) async {
-    try {
-      Database db = await FilmeConnection.getConnection();
-      //UPDATE filmes SET urlImagem = ?, titulo = ?, genero = ?,
-      return await db
-          .update('filmes', filme.toMap(), where: "id=?", whereArgs: [id]);
-    } catch (ex) {
-      print(ex);
-      return null;
-    }
+    // Atualizar o filme no banco de dados
+    return await db.update(
+      'filmes',                           // Tabela 'filmes'
+      filme.toMap(),                       // Convertendo o objeto Filme para um mapa de chave/valor
+      where: "id = ?",                     // Condição para identificar o filme a ser atualizado
+      whereArgs: [id],                     // Passando o 'id' do filme que será atualizado
+    );
+  } catch (ex) {
+    // Se ocorrer algum erro, imprime e retorna null
+    print(ex);
+    return null;
   }
+}
 
   static Future<int?> deletar(int id) async {
     try {
