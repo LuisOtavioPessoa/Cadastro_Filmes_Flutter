@@ -14,21 +14,29 @@ class FilmeDao {
     }
   }
 
-  static Future<List<Filme>> buscarTodos() async {
-    try {
-      Database db = await FilmeConnection.getConnection();
-      //SELECT * FROM filmes
-      List<Map<String, Object?>> ListMap = await db.query('filmes');
-      List<Filme> filmes = [];
-      for (Map<String, Object?> map in ListMap) {
-        filmes.add(Filme.fromMap(map));
-      }
-      return filmes;
-    } catch (ex) {
-      print(ex);
-      return [];
+static Future<List<Filme>> buscarTodos() async {
+  try {
+    Database db = await FilmeConnection.getConnection();
+    // Executa a consulta no banco de dados
+    List<Map<String, Object?>> ListMap = await db.query('filmes');
+
+    // Verificação: imprime os filmes encontrados no console
+    print('Filmes encontrados: $ListMap');
+
+    // Converte os dados do banco de dados em uma lista de objetos Filme
+    List<Filme> filmes = [];
+    for (Map<String, Object?> map in ListMap) {
+      filmes.add(Filme.fromMap(map));
     }
+
+    return filmes;
+  } catch (ex) {
+    // Em caso de erro, imprime a exceção no console
+    print('Erro ao buscar filmes: $ex');
+    return [];
   }
+}
+
 
   static Future<int?> atualizar(int id, Filme filme) async {
     try {
