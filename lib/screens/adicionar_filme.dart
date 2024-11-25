@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/database/filme_dao.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
-import 'package:myapp/model/filme.dart';   // Importando o modelo Filme
+import 'package:myapp/model/filme.dart'; // Importando o modelo Filme
 
 class CadastrarFilme extends StatefulWidget {
   const CadastrarFilme({super.key});
@@ -30,14 +30,14 @@ class _CadastrarFilmeState extends State<CadastrarFilme> {
     if (_formKey.currentState!.validate()) {
       // Criando o objeto Filme com os dados inseridos
       Filme filme = Filme(
-        _urlImagemController.text,  // URL da imagem
-        _tituloController.text,     // Título
-        _generoController.text,     // Gênero
-        _faixaSelecionada ?? '',    // Faixa Etária
-        int.parse(_duracaoController.text),  // Duração (convertido para int)
-        _nota.toInt(),              // Pontuação (convertido para int)
-        _descricaoController.text,  // Descrição
-        int.parse(_anoController.text),  // Ano (convertido para int)
+        _urlImagemController.text, // URL da imagem
+        _tituloController.text, // Título
+        _generoController.text, // Gênero
+        _faixaSelecionada ?? '', // Faixa Etária
+        int.parse(_duracaoController.text), // Duração (convertido para int)
+        _nota.toInt(), // Pontuação (convertido para int)
+        _descricaoController.text, // Descrição
+        int.parse(_anoController.text), // Ano (convertido para int)
       );
 
       // Chama o DAO para inserir o filme no banco
@@ -59,6 +59,10 @@ class _CadastrarFilmeState extends State<CadastrarFilme> {
         _anoController.clear();
         _descricaoController.clear();
       });
+
+      // Retorna para a tela anterior e atualiza a lista
+      Navigator.pop(context,
+          true); // Passa 'true' para indicar que o filme foi adicionado
     }
   }
 
@@ -131,7 +135,8 @@ class _CadastrarFilmeState extends State<CadastrarFilme> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _duracaoController,
-                decoration: const InputDecoration(labelText: 'Duração (minutos)'),
+                decoration:
+                    const InputDecoration(labelText: 'Duração (minutos)'),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {

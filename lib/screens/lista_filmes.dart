@@ -140,68 +140,75 @@ class _ListaFilmesState extends State<ListaFilmes> {
                           SizedBox(height: 5), // Espaçamento entre elementos
                         ],
                       ),
-                      onTap: () {
-  showModalBottomSheet(
-    context: context,
-    builder: (context) => Wrap(
-      children: [
-        ListTile(
-          leading: Icon(Icons.info),
-          title: Text('Exibir Dados'),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ExibirDadosFilme(
-                  filme: filme, // Passa o filme selecionado
-                ),
-              ),
-            );
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.edit),
-          title: Text('Alterar'),
-          onTap: () {
-            // Navegar para a tela de edição do filme, passando o objeto 'filme'
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditarFilme(filme: filme),
-              ),
-            );
-          },
-        ),
-      ],
-    ),
-  );
-},
-
+                                            onTap: () {
+                        // Exibe um BottomSheet com opções
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => Wrap(
+                            children: [
+                              ListTile(
+                                leading: Icon(Icons.info),
+                                title: Text('Exibir Dados'),
+                                onTap: () {
+                                  // Navega para a tela de exibição de dados do filme
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ExibirDadosFilme(
+                                        filme: filme, // Passa o filme selecionado
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              ListTile(
+                                leading: Icon(Icons.edit),
+                                title: Text('Alterar'),
+                                onTap: () async {
+                                  // Navega para a tela de edição do filme
+                                  final filmeEditado = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => EditarFilme(filme: filme),
+                                    ),
+                                  );
+                                  
+                                  // Se o filme foi editado, recarrega a lista
+                                  if (filmeEditado != null) {
+                                    carregarFilmes();
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                 );
               },
             ),
 
-        // Botão para ir para tela de adicionar um novo filme
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            final filmeAdicionado = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CadastrarFilme(), // Chama a tela de cadastro
-              ),
-            );
 
-            if (filmeAdicionado != null) {
-              // Caso a tela de cadastro retorne um filme, recarregue a lista
-              carregarFilmes(); // Recarrega a lista após adicionar
-            }
-          },
-          backgroundColor: const Color.fromARGB(255, 0, 133, 235),
-          child: Icon(Icons.add, color: Colors.white),
-        ),
+      // Botão para ir para tela de adicionar um novo filme
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          // Chama a tela de cadastro de filme
+          final filmeAdicionado = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CadastrarFilme(),
+            ),
+          );
 
+          // Se o filme foi adicionado (se a resposta for 'true'), recarregue os filmes
+          if (filmeAdicionado == true) {
+            carregarFilmes(); // Recarrega a lista após adicionar o filme
+          }
+        },
+        backgroundColor: const Color.fromARGB(255, 0, 133, 235),
+        child: Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 }

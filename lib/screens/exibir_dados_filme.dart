@@ -74,6 +74,7 @@ class ExibirDadosFilme extends StatelessWidget {
                 filme.descricao,
                 style: TextStyle(fontSize: 16, height: 1.5),
               ),
+              
             ],
           ),
         ),

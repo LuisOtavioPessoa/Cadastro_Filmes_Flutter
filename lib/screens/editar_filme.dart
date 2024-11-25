@@ -78,7 +78,7 @@ void _editarFilme() async {
     });
 
     // Navegar para a tela de listagem de filmes ou outra tela desejada
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 }
 
