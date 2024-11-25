@@ -1,16 +1,40 @@
-# myapp
+## Gerenciador de Filmes 🎬
+O Gerenciador de Filmes é um aplicativo desenvolvido em Flutter para listar, adicionar, editar e excluir filmes. Ele utiliza o banco de dados local para armazenar informações sobre os filmes e oferece uma interface amigável para gerenciar as informações.
 
-A new Flutter project.
+O objetivo principal é criar uma aplicação robusta e intuitiva, com funcionalidades como listagem de filmes com classificação etária, edição de dados e uma interface com design responsivo e interativo.
 
-## Getting Started
+## Tecnologias Utilizadas 🚀
 
-This project is a starting point for a Flutter application.
+- **Linguagem:** Dart
+- **Framework:** Flutter
+- **Bibliotecas:** flutter, sqflite, path, flutter_rating_bar, smooth_star_rating_null_safety, cupertino_icons
+- **Banco de Dados:**  SQLite
 
-A few resources to get you started if this is your first Flutter project:
+## Funcionalidades 🌟 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+✔️ **Listagem de Filmes**  
+✔️ **Adicionar Novo Filme**  
+✔️ **Edição de Filme**  
+✔️ **Exclusão com Desfazer**  
+✔️ **Exibição de Detalhes do Filme**  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Configuração do Projeto ⚙️
+Para rodar o projeto, siga as etapas abaixo:
+
+1- **Pré-requisitos** 
+- Instale o Flutter em sua máquina: [Site Oficial Flutter](https://flutter.dev/).
+- Configure o ambiente de desenvolvimento (VS Code/Android Studio).
+- Instale os pacotes necessários executando:
+```bash
+flutter pub get
+```
+2- **Início Rápido** 
+- Clone o repositório do projeto.
+- Navegue até a pasta raiz do projeto no terminal.
+- Execute o aplicativo no simulador ou dispositivo físico com:
+```bash
+flutter run
+```
+
+
+
