@@ -87,7 +87,9 @@ void _editarFilme() async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Filme'),
+        backgroundColor: const Color(0xFF131047),
+        title: Text('Editar Filme', style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

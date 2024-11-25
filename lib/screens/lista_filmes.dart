@@ -29,10 +29,10 @@ class _ListaFilmesState extends State<ListaFilmes> {
   }
 
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 0, 133, 235),
+        backgroundColor: const Color(0xFF131047),
         title: Text('Lista de Filmes', style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
@@ -129,11 +129,24 @@ class _ListaFilmesState extends State<ListaFilmes> {
                                 Text(
                                   filme.titulo,
                                   style: TextStyle(
+                                      color: Color.fromARGB(255, 19, 16, 71),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16),
                                 ),
-                                Text('${filme.genero}'), // Exibe o gênero
-                                Text('${filme.duracao}min'), // Exibe a duração
+                                Text(
+                                  '${filme.genero}',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(
+                                        255, 44, 41, 102), // Cor para o gênero
+                                  ),
+                                ), // Exibe o gênero
+                                Text(
+                                  '${filme.duracao}min',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(
+                                        255, 44, 41, 102), // Cor para o gênero
+                                  ),
+                                ), // Exibe a duração
                                 SizedBox(height: 10),
                                 RatingBarIndicator(
                                   rating: filme.pontuacao.toDouble(),
@@ -149,7 +162,10 @@ class _ListaFilmesState extends State<ListaFilmes> {
                           ),
                         ),
                         IconButton(
-                          icon: Icon(Icons.more_vert),
+                          icon: Icon(
+                            Icons.more_vert,
+                            color: Color.fromARGB(255, 19, 16, 71),
+                          ),
                           onPressed: () {
                             showModalBottomSheet(
                               context: context,
@@ -165,7 +181,8 @@ class _ListaFilmesState extends State<ListaFilmes> {
                                           builder: (context) =>
                                               ExibirDadosFilme(filme: filme),
                                         ),
-                                      );Icons.more_vert;
+                                      );
+                                      Icons.more_vert;
                                     },
                                   ),
                                   ListTile(
@@ -211,7 +228,7 @@ class _ListaFilmesState extends State<ListaFilmes> {
             carregarFilmes(); // Recarrega a lista após adicionar o filme
           }
         },
-        backgroundColor: const Color.fromARGB(255, 0, 133, 235),
+        backgroundColor: const Color(0xFF131047),
         child: Icon(Icons.add, color: Colors.white),
       ),
     );

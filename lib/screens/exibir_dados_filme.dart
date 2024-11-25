@@ -11,7 +11,7 @@ class ExibirDadosFilme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 0, 133, 235),
+        backgroundColor: const Color(0xFF131047),
         title: Text('Detalhes', style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
       ),

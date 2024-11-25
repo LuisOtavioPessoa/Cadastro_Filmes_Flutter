@@ -70,7 +70,9 @@ class _CadastrarFilmeState extends State<CadastrarFilme> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastrar Filme'),
+        backgroundColor: const Color(0xFF131047),
+        title: Text('Cadastrar Filme', style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
