@@ -114,7 +114,7 @@ class _ListaFilmesState extends State<ListaFilmes> {
                           child: Image.network(
                             filme.urlImagem,
                             width: 100,
-                            height: 120, // Ocupar a altura vertical do item
+                            height: 145, // Ocupar a altura vertical do item
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) =>
                                 Icon(Icons.broken_image, size: 100),
@@ -144,9 +144,54 @@ class _ListaFilmesState extends State<ListaFilmes> {
                                   '${filme.duracao}min',
                                   style: TextStyle(
                                     color: Color.fromARGB(
-                                        255, 44, 41, 102), // Cor para o gênero
+                                        255, 44, 41, 102), // Cor para a duração
                                   ),
                                 ), // Exibe a duração
+
+                                Row(
+                                  children: [
+                                    filme.faixaEtaria == 'Livre'
+                                        ? Image.network(
+                                            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/DJCTQ_-_L.svg/1024px-DJCTQ_-_L.svg.png',
+                                            width: 24,
+                                            height: 24,
+                                          ) // Ícone para "Livre"
+                                        : filme.faixaEtaria == '10'
+                                            ? Image.network(
+                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/DJCTQ_-_10.svg/1200px-DJCTQ_-_10.svg.png',
+                                                width: 24,
+                                                height: 24,
+                                              ) // Ícone para "10"
+                                            : filme.faixaEtaria == '12'
+                                                ? Image.network(
+                                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/DJCTQ_-_12.svg/240px-DJCTQ_-_12.svg.png',
+                                                    width: 24,
+                                                    height: 24,
+                                                  ) // Ícone para "12"
+                                                : filme.faixaEtaria == '14'
+                                                    ? Image.network(
+                                                        'https://logodownload.org/wp-content/uploads/2017/07/classificacao-14-anos-logo.png',
+                                                        width: 24,
+                                                        height: 24,
+                                                      ) // Ícone para "14"
+                                                    : filme.faixaEtaria == '16'
+                                                        ? Image.network(
+                                                            'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/DJCTQ_-_16.svg/768px-DJCTQ_-_16.svg.png',
+                                                            width: 24,
+                                                            height: 24,
+                                                          ) // Ícone para "16"
+                                                        : Image.network(
+                                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzuCJ86HARUgSIxx06gqSnATgoajvKH9fmLw&s',
+                                                            width: 24,
+                                                            height: 24,
+                                                          ), // Ícone para "18"
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 32, 0, 0)),
+                                    SizedBox(width: 8),
+                                  ],
+                                ),
+
                                 SizedBox(height: 10),
                                 RatingBarIndicator(
                                   rating: filme.pontuacao.toDouble(),
@@ -182,7 +227,6 @@ class _ListaFilmesState extends State<ListaFilmes> {
                                               ExibirDadosFilme(filme: filme),
                                         ),
                                       );
-                                      Icons.more_vert;
                                     },
                                   ),
                                   ListTile(
@@ -212,6 +256,7 @@ class _ListaFilmesState extends State<ListaFilmes> {
                 );
               },
             ),
+
       // Botão para ir para tela de adicionar um novo filme
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
