@@ -54,20 +54,20 @@ flutter run
 
 ## Estrutura 🗂️
 ```bash
-├── database/                  # Configuração e interações com o banco de dados SQLite
-│   ├── filme_connection.dart  # Configuração da conexão com o banco e criação de tabelas
-│   └── filme_dao.dart         # Implementação das operações CRUD para os filmes
-├── model/                     # Definição das classes e modelos de dados
-│   └── filme.dart             # Modelo representando um filme
-├── screens/                   # Telas do aplicativo
-│   ├── adicionar_filme.dart   # Tela para cadastrar novos filmes
-│   ├── editar_filme.dart      # Tela para editar informações de um filme existente
-│   ├── exibir_dados_filme.dart# Tela para exibir os detalhes de um filme
-│   └── lista_filmes.dart      # Tela principal com a lista de filmes cadastrados
-├── main.dart                  # Ponto de entrada do aplicativo
-├── pubspec.yaml               # Arquivo de configuração do Flutter (dependências e assets)
-├── pubspec.lock               # Lockfile do Flutter para as dependências
-└── README.md                  # Documentação do projeto
+├── database/                   # Configuração e interações com o banco de dados SQLite
+│   ├── filme_connection.dart   # Configuração da conexão com o banco e criação de tabelas
+│   └── filme_dao.dart          # Implementação das operações CRUD para os filmes
+├── model/                      # Definição das classes e modelos de dados
+│   └── filme.dart              # Modelo representando um filme
+├── screens/                    # Telas do aplicativo
+│   ├── adicionar_filme.dart    # Tela para cadastrar novos filmes
+│   ├── editar_filme.dart       # Tela para editar informações de um filme existente
+│   ├── exibir_dados_filme.dart # Tela para exibir os detalhes de um filme
+│   └── lista_filmes.dart       # Tela principal com a lista de filmes cadastrados
+├── main.dart                   # Ponto de entrada do aplicativo
+├── pubspec.yaml                # Arquivo de configuração do Flutter (dependências e assets)
+├── pubspec.lock                # Lockfile do Flutter para as dependências
+└── README.md                   # Documentação do projeto
 ```
 ## Contribuidores 👥
 
