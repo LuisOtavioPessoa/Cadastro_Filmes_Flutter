@@ -44,10 +44,22 @@ class ExibirDadosFilme extends StatelessWidget {
                     '${filme.ano}',
                     style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                   ),
-                  Text(
-                    filme
-                        .faixaEtaria, // Substitua por classificação etária, se disponível
-                    style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                  Image.network(
+                    filme.faixaEtaria == 'Livre'
+                        ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/DJCTQ_-_L.svg/1024px-DJCTQ_-_L.svg.png'
+                        : filme.faixaEtaria == '10'
+                            ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/DJCTQ_-_10.svg/1200px-DJCTQ_-_10.svg.png'
+                            : filme.faixaEtaria == '12'
+                                ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/DJCTQ_-_12.svg/240px-DJCTQ_-_12.svg.png'
+                                : filme.faixaEtaria == '14'
+                                    ? 'https://logodownload.org/wp-content/uploads/2017/07/classificacao-14-anos-logo.png'
+                                    : filme.faixaEtaria == '16'
+                                        ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/DJCTQ_-_16.svg/768px-DJCTQ_-_16.svg.png'
+                                        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzuCJ86HARUgSIxx06gqSnATgoajvKH9fmLw&s',
+                    width: 24,
+                    height: 24,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Icon(Icons.error, size: 24),
                   ),
                 ],
               ),
