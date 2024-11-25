@@ -82,12 +82,32 @@ class _ListaFilmesState extends State<ListaFilmes> {
                     child: Icon(Icons.delete, color: Colors.white),
                   ),
                   onDismissed: (direction) async {
+                    final filmeRemovido = filme; // Armazena o item removido
+                    final indexRemovido = index; // Armazena o índice do item
+
+                    // Remove o filme da lista e da base de dados
                     await FilmeDao.deletar(filme.id);
                     setState(() {
                       filmes.removeAt(index);
                     });
+
+                    // Exibe o SnackBar com a opção de desfazer
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('${filme.titulo} deletado!')),
+                      SnackBar(
+                        content: Text('${filme.titulo} deletado!'),
+                        action: SnackBarAction(
+                          label: 'Desfazer',
+                          onPressed: () {
+                            // Restaura o filme removido
+                            setState(() {
+                              filmes.insert(indexRemovido, filmeRemovido);
+                            });
+                            // Reinsere o filme na base de dados
+                            FilmeDao.inserir(filmeRemovido);
+                          },
+                        ),
+                        duration: Duration(seconds: 5), // Tempo para desfazer
+                      ),
                     );
                   },
                   child: Container(
