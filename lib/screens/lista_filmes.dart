@@ -29,7 +29,7 @@ class _ListaFilmesState extends State<ListaFilmes> {
   }
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 133, 235),
@@ -105,91 +105,96 @@ class _ListaFilmesState extends State<ListaFilmes> {
                         ),
                       ],
                     ),
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(8), // Borda na imagem
-                        child: Image.network(
-                          filme.urlImagem,
-                          width: 50,
-                          height: 50,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Icon(Icons.broken_image),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(12), // Borda da imagem
+                          child: Image.network(
+                            filme.urlImagem,
+                            width: 100,
+                            height: 120, // Ocupar a altura vertical do item
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Icon(Icons.broken_image, size: 100),
+                          ),
                         ),
-                      ),
-                      title: Text(
-                        filme.titulo,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('${filme.genero}'), // Exibe o gênero
-                          Text('${filme.duracao}min'), // Exibe a duração
-                          SizedBox(
-                              height: 30), // Espaçamento acima do RatingBar
-                          RatingBarIndicator(
-                            rating: filme.pontuacao.toDouble(),
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color: Colors.amber,
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  filme.titulo,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                                Text('${filme.genero}'), // Exibe o gênero
+                                Text('${filme.duracao}min'), // Exibe a duração
+                                SizedBox(height: 10),
+                                RatingBarIndicator(
+                                  rating: filme.pontuacao.toDouble(),
+                                  itemBuilder: (context, _) => Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  itemCount: 5,
+                                  itemSize: 20,
+                                ),
+                              ],
                             ),
-                            itemCount: 5,
-                            itemSize: 20,
                           ),
-                          SizedBox(height: 5), // Espaçamento entre elementos
-                        ],
-                      ),
-                                            onTap: () {
-                        // Exibe um BottomSheet com opções
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => Wrap(
-                            children: [
-                              ListTile(
-                                leading: Icon(Icons.info),
-                                title: Text('Exibir Dados'),
-                                onTap: () {
-                                  // Navega para a tela de exibição de dados do filme
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ExibirDadosFilme(
-                                        filme: filme, // Passa o filme selecionado
-                                      ),
-                                    ),
-                                  );
-                                },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.more_vert),
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => Wrap(
+                                children: [
+                                  ListTile(
+                                    leading: Icon(Icons.info),
+                                    title: Text('Exibir Dados'),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              ExibirDadosFilme(filme: filme),
+                                        ),
+                                      );Icons.more_vert;
+                                    },
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.edit),
+                                    title: Text('Alterar'),
+                                    onTap: () async {
+                                      final filmeEditado = await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              EditarFilme(filme: filme),
+                                        ),
+                                      );
+                                      if (filmeEditado != null) {
+                                        carregarFilmes();
+                                      }
+                                    },
+                                  ),
+                                ],
                               ),
-                              ListTile(
-                                leading: Icon(Icons.edit),
-                                title: Text('Alterar'),
-                                onTap: () async {
-                                  // Navega para a tela de edição do filme
-                                  final filmeEditado = await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => EditarFilme(filme: filme),
-                                    ),
-                                  );
-                                  
-                                  // Se o filme foi editado, recarrega a lista
-                                  if (filmeEditado != null) {
-                                    carregarFilmes();
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 );
               },
             ),
-
-
       // Botão para ir para tela de adicionar um novo filme
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
